@@ -1,0 +1,6 @@
+interface:
+  display_name: "Producción de videos CoC"
+  short_description: "Organiza, edita y sigue videos por etapas con Palmier"
+  default_prompt: "Usa $yt-video-flow para crear o retomar mi video de Clash of Clans y ejecutar la etapa solicitada."
+policy:
+  allow_implicit_invocation: true

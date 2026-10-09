@@ -1,0 +1,26 @@
+# Datos locales de producción
+/videos/
+/assets-compartidos/
+/calendario.md
+/.yt-video-flow.lock
+/palmier/
+/videos-ipad/
+/notas-*.md
+
+# Medios y proyectos nativos
+*.palmier/
+*.mov
+*.mp4
+*.m4a
+*.wav
+*.mp3
+
+# Entorno y cachés
+.DS_Store
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.env
+.env.*
+!.env.example

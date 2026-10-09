@@ -1,0 +1,4 @@
+interface:
+  display_name: "yt-cut-hi"
+  short_description: "Corta pausas y reúne ideas completas en otro timeline"
+  default_prompt: "Usa $yt-cut-hi con el clip de la línea de tiempo: corta silencios sin eliminar y crea otra línea con las ideas completas."

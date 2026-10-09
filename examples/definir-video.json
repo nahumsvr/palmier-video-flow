@@ -1,0 +1,12 @@
+{
+  "nombre": "Rescate de un TH9",
+  "idea": "Retomar una cuenta antigua y establecer el objetivo de maxear TH9.",
+  "etapa": "grabacion",
+  "prioridad": {
+    "nivel": "media",
+    "motivo": "Episodio inicial de recuperación; propuesta.",
+    "confirmada": false
+  },
+  "bloqueos": ["Falta grabar el estado inicial"],
+  "siguiente_paso": "Grabar las tomas principales y comprobar voz/gameplay."
+}
