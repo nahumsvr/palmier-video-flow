@@ -35,6 +35,7 @@ Cada pedido activa una etapa; no ejecuta automáticamente todo el proceso.
 
 - **`yt-video-flow`:** creación/adopción, guion, inventario, notas, seguimiento y entregables.
 - **`yt-cut-hi`:** cortes sin pérdidas en el original y otra versión con ideas completas, manteniendo video y audios sincronizados.
+- **Edición dinámica:** `yt-edit-dinamica` coordina una versión nueva del corte con `yt-edit-zooms` (encuadre completo y zooms con keyframes), `yt-edit-capitulos` (tarjetas negras con ripple), `yt-edit-subtitulos` (captions en Clash con entrada animada) y `yt-edit-sfx` (efectos de sonido sincronizados). Incluyen cálculos comprobados por pruebas.
 - **Calendario:** fecha propuesta/confirmada/real, importancia, etapa, miniatura y pendiente principal. Detecta días ocupados.
 - **Publicación:** cinco títulos candidatos, tres composiciones de miniatura y descripción del episodio.
 - **Comprobaciones:** identifica material faltante y notas, revisiones o exportaciones de otro corte.

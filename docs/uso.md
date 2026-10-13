@@ -11,6 +11,8 @@ Abre el clon como workspace, conecta Palmier y usa estos pedidos:
 | «Ya está el crudo; prepara V0001» | Inspección de archivos/audio, importación y registro del original. |
 | «Haz el montaje base» | Original con cortes sin pérdida y versión `Ideas completas`, mediante `yt-cut-hi`. |
 | «Edita los apoyos y la emoción» | Versión de edición con apoyos, énfasis selectivo y notas actualizadas. |
+| «Haz una versión más dinámica (v2, v3)» | Copia del corte con encuadre completo, capítulos, zooms, subtítulos animados y efectos de sonido, mediante `yt-edit-dinamica`. Nunca toca el corte revisado; el usuario decide cuál queda vigente. |
+| «Añade zooms / subtítulos animados / efectos / capítulos» | Solo esa parte, con su skill: `yt-edit-zooms`, `yt-edit-subtitulos`, `yt-edit-sfx` o `yt-edit-capitulos`. Música, efectos temáticos y máscaras mágicas necesitan material o autorización de gasto. |
 | «Revisa el video» | Comprobaciones estructurales y audiovisuales según lo que pueda revisarse realmente. |
 | «Exporta el video» | Archivo versionado, espera del resultado y comprobación del entregable. |
 | «Lo programé para el día… a las…» | Registro de programación real y actualización del calendario. |

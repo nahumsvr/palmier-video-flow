@@ -1,0 +1,6 @@
+interface:
+  display_name: "Zooms y encuadre CoC"
+  short_description: "Encuadre completo y zooms con keyframes sin ocultar la interfaz"
+  default_prompt: "Usa $yt-edit-zooms para fijar el encuadre y añadir zooms a los datos del juego."
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Efectos de sonido CoC"
+  short_description: "Efectos sincronizados con zooms, cifras y capítulos, con volumen seguro"
+  default_prompt: "Usa $yt-edit-sfx para colocar efectos de sonido sincronizados en la edición."
+policy:
+  allow_implicit_invocation: true
