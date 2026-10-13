@@ -4,6 +4,8 @@
 
 Abre el clon como workspace, conecta Palmier y usa estos pedidos:
 
+Los pedidos y el estado son compartidos por Codex y Claude Code. Para Claude, inicia `claude` desde la raíz; puedes usar `/yt-video-flow`, `/yt-cut-hi` y las skills de edición dinámica (`/yt-edit-dinamica` y sus cuatro especializadas). Lee la [guía de hooks y continuidad](claude-code.md) al cambiar de agente.
+
 | Pedido | Resultado |
 | --- | --- |
 | «Crea un proyecto de video» | ID permanente, carpetas, documentos y proyecto Palmier. La idea puede llegar después. |
@@ -20,6 +22,8 @@ Abre el clon como workspace, conecta Palmier y usa estos pedidos:
 | «Archiva el proyecto» | Respaldo autocontenido de Palmier comprobado; fuentes conservadas. |
 
 Al retomar un episodio, menciona su ID. Cambiar el título no cambia `V0001` ni sus rutas.
+
+Una sesión nueva debe leer `estado.json` y los documentos del episodio, aunque otro agente haya terminado una etapa. Un archivo local `continuidad.md` puede resumir decisiones y evidencia; no reemplaza el estado. Los hooks de Claude no conocen por sí solos cambios del timeline o hechos de YouTube.
 
 Para incorporar un proyecto antiguo:
 

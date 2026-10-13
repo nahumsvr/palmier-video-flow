@@ -4,10 +4,14 @@ permissions:
   contents: read
 jobs:
   tests:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
+        os: [ubuntu-latest, macos-latest]
         python: ['3.9', '3.13']
+        exclude:
+          - os: macos-latest
+            python: '3.9'
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v7

@@ -21,18 +21,19 @@ SKILLS = {'yt-video-flow': 'video_flow.py', 'yt-cut-hi': 'plan_ranges.py',
 
 class DistributionTests(unittest.TestCase):
     def test_skill_discovery_links_resolve(self):
-        for name, script_name in SKILLS.items():
-            with self.subTest(name=name):
-                link = ROOT / '.agents/skills' / name
-                self.assertTrue(link.is_symlink())
-                self.assertEqual(link.resolve(), ROOT / 'skills' / name)
-                self.assertTrue((link / 'SKILL.md').is_file())
-                self.assertTrue((link / 'agents' / 'openai.yaml').is_file())
-                if script_name is None:
-                    continue
-                result = subprocess.run([sys.executable, str(link / 'scripts' / script_name), '--help'],
-                                        text=True, capture_output=True)
-                self.assertEqual(result.returncode, 0, result.stderr)
+        for discovery in ('.agents/skills', '.claude/skills'):
+            for name, script_name in SKILLS.items():
+                with self.subTest(discovery=discovery, name=name):
+                    link = ROOT / discovery / name
+                    self.assertTrue(link.is_symlink())
+                    self.assertEqual(link.resolve(), ROOT / 'skills' / name)
+                    self.assertTrue((link / 'SKILL.md').is_file())
+                    self.assertTrue((link / 'agents' / 'openai.yaml').is_file())
+                    if script_name is None:
+                        continue
+                    result = subprocess.run([sys.executable, str(link / 'scripts' / script_name), '--help'],
+                                            text=True, capture_output=True)
+                    self.assertEqual(result.returncode, 0, result.stderr)
 
     def test_skill_front_matter_names_match_their_folders(self):
         for name in SKILLS:
@@ -59,7 +60,9 @@ class DistributionTests(unittest.TestCase):
 
     def test_private_runtime_files_are_ignored(self):
         paths = ['videos/V0001/estado.json', 'assets-compartidos/music.wav', 'calendario.md',
-                 'palmier/project.palmier/info.json', 'videos-ipad/game.mov', '.env', 'raw.mp4']
+                 'palmier/project.palmier/info.json', 'videos-ipad/game.mov', '.env', 'raw.mp4',
+                 'videos/V0001/CLAUDE.md', 'videos/V0001/continuidad.md',
+                 '.claude/settings.local.json', 'CLAUDE.local.md', '.claude/worktrees/edit/file']
         result = subprocess.run(['git', 'check-ignore', '--no-index', '--stdin'], cwd=ROOT,
                                 input='\n'.join(paths) + '\n', text=True, capture_output=True)
         self.assertEqual(set(result.stdout.splitlines()), set(paths), result.stderr)

@@ -8,3 +8,9 @@
 - Actualiza el estado y el calendario al terminar una etapa, registrar un cambio o encontrar un bloqueo. No marques una acción como completada por haberla iniciado.
 - Los originales y los archivos importados deben permanecer disponibles. No escribas dentro de paquetes `.palmier`, no muevas paquetes abiertos y no borres fuentes al archivar.
 - Trabaja por etapas. Exportar requiere un pedido de exportación; programar/publicar en YouTube lo hace el usuario y se registra cuando informa el resultado. Las miniaturas las hace el usuario; propone tres composiciones.
+
+## Mantenimiento y compatibilidad del repositorio
+
+- Las instrucciones de producción son compartidas por Codex y Claude Code. `CLAUDE.md` importa este archivo; las skills canónicas están en `skills/`, enlazadas desde `.agents/skills/` y `.claude/skills/`. Edita el destino, no crees copias divergentes.
+- Para cambios en herramientas, hooks o documentación, consulta `CONTRIBUTING.md` y ejecuta las suites allí indicadas. Las pruebas usan workspaces temporales y no deben modificar videos reales ni llamar a Palmier.
+- Un cambio de compatibilidad no es una etapa nueva de edición. Conserva los estados comprobados, IDs y fuentes del episodio. Sus instrucciones y documentos de continuidad permanecen en `videos/VNNNN/`, fuera del repositorio público.

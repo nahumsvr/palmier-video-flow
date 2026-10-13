@@ -19,6 +19,8 @@ python3 skills/yt-video-flow/scripts/video_flow.py check V0001
 
 Cada comando, incluso `show`/`check`, sincroniza calendario y bloques Markdown antes y después. Este es el hook del flujo: no depende de callbacks de Palmier. Al volver a una sesión, regenerar antes de consultar fechas; no supone que se observan cambios de YouTube o de archivos mientras nadie ejecuta el flujo.
 
+Claude Code añade hooks de sesión en `.claude/settings.json` que ejecutan este mismo `calendar`. Aportan contexto y refrescan los bloques, sin cambiar `estado.json`, llamar a Palmier ni certificar resultados. El agente sigue usando `begin`, `update` y `snapshot` según la evidencia real. Detalles: [Claude Code](../../../docs/claude-code.md).
+
 Los estados se escriben de forma atómica y el helper serializa sus propias escrituras con un lock local. El lock no protege contra edición manual simultánea de JSON o cambios externos en Palmier: releer antes de mutar. La parte editorial fuera de `<!-- yt-video-flow:… -->` permanece intacta. Si alguien edita manualmente `estado.json`, ejecutar `calendar` después; si tiene errores, el helper falla sin publicar un calendario incompleto.
 
 `init --id V0001` retoma el registro existente sin sobrescribir nombre, idea o documentos. `init` sin ID crea un video nuevo. Antes de crear, identificar si el usuario pide retomar o realmente crear otro.

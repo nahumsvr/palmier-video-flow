@@ -24,3 +24,8 @@ __pycache__/
 .env
 .env.*
 !.env.example
+
+# Preferencias y sesiones privadas de Claude Code
+.claude/settings.local.json
+CLAUDE.local.md
+.claude/worktrees/
