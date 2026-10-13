@@ -13,14 +13,35 @@ spec = importlib.util.spec_from_file_location('ranges', ROOT / 'skills/yt-cut-hi
 ranges = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(ranges)
 
+SKILLS = {'yt-video-flow': 'video_flow.py', 'yt-cut-hi': 'plan_ranges.py',
+          'yt-edit-dinamica': None, 'yt-edit-zooms': 'zoom_rows.py',
+          'yt-edit-subtitulos': 'caption_motion.py', 'yt-edit-sfx': 'sfx_plan.py',
+          'yt-edit-capitulos': 'chapter_plan.py'}
+
 
 class DistributionTests(unittest.TestCase):
     def test_skill_discovery_links_resolve(self):
-        for name in ('yt-video-flow', 'yt-cut-hi'):
-            link = ROOT / '.agents/skills' / name
-            self.assertTrue(link.is_symlink())
-            self.assertEqual(link.resolve(), ROOT / 'skills' / name)
-            self.assertTrue((link / 'SKILL.md').is_file())
+        for discovery in ('.agents/skills', '.claude/skills'):
+            for name, script_name in SKILLS.items():
+                with self.subTest(discovery=discovery, name=name):
+                    link = ROOT / discovery / name
+                    self.assertTrue(link.is_symlink())
+                    self.assertEqual(link.resolve(), ROOT / 'skills' / name)
+                    self.assertTrue((link / 'SKILL.md').is_file())
+                    self.assertTrue((link / 'agents' / 'openai.yaml').is_file())
+                    if script_name is None:
+                        continue
+                    result = subprocess.run([sys.executable, str(link / 'scripts' / script_name), '--help'],
+                                            text=True, capture_output=True)
+                    self.assertEqual(result.returncode, 0, result.stderr)
+
+    def test_skill_front_matter_names_match_their_folders(self):
+        for name in SKILLS:
+            with self.subTest(name=name):
+                lines = (ROOT / 'skills' / name / 'SKILL.md').read_text(encoding='utf-8').splitlines()
+                self.assertEqual(lines[0], '---')
+                self.assertIn('name: ' + name, lines[:4])
+                self.assertTrue(any(line.startswith('description: ') for line in lines[:6]))
 
     def test_documented_examples_execute_in_clean_workspace(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -39,7 +60,9 @@ class DistributionTests(unittest.TestCase):
 
     def test_private_runtime_files_are_ignored(self):
         paths = ['videos/V0001/estado.json', 'assets-compartidos/music.wav', 'calendario.md',
-                 'palmier/project.palmier/info.json', 'videos-ipad/game.mov', '.env', 'raw.mp4']
+                 'palmier/project.palmier/info.json', 'videos-ipad/game.mov', '.env', 'raw.mp4',
+                 'videos/V0001/CLAUDE.md', 'videos/V0001/continuidad.md',
+                 '.claude/settings.local.json', 'CLAUDE.local.md', '.claude/worktrees/edit/file']
         result = subprocess.run(['git', 'check-ignore', '--no-index', '--stdin'], cwd=ROOT,
                                 input='\n'.join(paths) + '\n', text=True, capture_output=True)
         self.assertEqual(set(result.stdout.splitlines()), set(paths), result.stderr)

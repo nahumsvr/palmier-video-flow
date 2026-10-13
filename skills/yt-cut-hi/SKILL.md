@@ -5,6 +5,8 @@ description: Limpia un clip hablado ya colocado en Palmier Pro, corta pausas sin
 
 # yt-cut-hi
 
+Skill compartida por Codex y Claude Code, enlazada desde sus carpetas de descubrimiento. En Claude Code se invoca con `/yt-cut-hi`. Resuelve los nombres lógicos de herramientas contra el MCP disponible; no copies prefijos, IDs ni contexto de otra sesión. Los hooks del agente no reemplazan la evidencia acústica ni el criterio editorial de este montaje.
+
 El flujo completo deja el original con cortes, sin pérdidas ni desplazamientos, y un timeline nuevo con las mejores versiones de las ideas, en orden y sin huecos. Ejecuta solo las fases solicitadas: cortar no autoriza eliminar; preparar un montaje no autoriza exportar.
 
 ## 1. Obtener evidencia una vez

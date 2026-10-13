@@ -3,7 +3,7 @@
 ## 1. Requisitos
 
 - **macOS y Palmier Pro instalado y abierto** para crear/editar proyectos mediante MCP.
-- **Codex local:** app o CLI con acceso al workspace.
+- **Codex local o Claude Code:** app/CLI con acceso al workspace. Para Claude sigue también su [guía específica](claude-code.md).
 - **Git y Python 3.9 o superior.** El helper usa la biblioteca estándar y funciona en macOS/Linux; no admite Windows nativo porque usa locks POSIX.
 - **FFmpeg/ffprobe**, recomendado para inspeccionar streams, silencios y archivos exportados. Consulta sus [descargas oficiales](https://ffmpeg.org/download.html).
 
@@ -25,7 +25,7 @@ cd palmier-video-flow
 python3 skills/yt-video-flow/scripts/video_flow.py calendar
 ```
 
-El último comando crea las carpetas compartidas y un calendario vacío. Abre **la raíz de este clon** como carpeta principal de trabajo en Codex. `AGENTS.md` orienta al agente y `.agents/skills/` contiene enlaces relativos a las dos skills. Codex permite descubrir skills del repositorio y seguir enlaces simbólicos. [Skills oficiales](https://learn.chatgpt.com/docs/build-skills), [instrucciones con AGENTS.md](https://developers.openai.com/codex/guides/agents-md)
+El último comando crea las carpetas compartidas y el calendario desde los registros existentes. Abre **la raíz de este clon** como carpeta principal de trabajo. Codex usa `AGENTS.md` y los enlaces de `.agents/skills/`. Claude Code usa `CLAUDE.md`, que importa `AGENTS.md`, y los enlaces de `.claude/skills/`. Ambos cargan las mismas skills y scripts. [Skills de Codex](https://learn.chatgpt.com/docs/build-skills), [instrucciones con AGENTS.md](https://developers.openai.com/codex/guides/agents-md), [skills de Claude Code y enlaces simbólicos](https://code.claude.com/docs/en/skills).
 
 No hace falta copiar las skills a una carpeta global: el helper calcula el workspace desde su ubicación real. Mantén el clon en una ubicación persistente porque allí residirán los documentos y referencias de producción.
 
@@ -39,6 +39,8 @@ codex mcp add palmier-pro --url http://127.0.0.1:19789/mcp
 
 En la app también puedes agregar un servidor **Streamable HTTP** en la configuración de MCPs con esa URL. Si el servidor ya está configurado, reutilízalo. La conexión es local y requiere que Palmier esté abierto. [Guía oficial de Palmier](https://www.palmier.io/docs/agent-and-mcp)
 
+Para **Claude Code**, `.mcp.json` ya declara ese servidor como `palmier-pro` de tipo `http`. Ejecuta `claude` en el clon y revisa la conexión con `/mcp`. Claude Code puede solicitar su autorización nativa al cargar un servidor del proyecto; revisa la configuración local que está en el repositorio. No hace falta copiar la configuración global de Codex ni añadir el mismo servidor otra vez. [MCP de Claude Code](https://code.claude.com/docs/en/mcp).
+
 Inicia una sesión en esta carpeta y pide:
 
 ```text
@@ -46,6 +48,8 @@ Usa el flujo de este repositorio y comprueba qué proyecto de Palmier está acti
 ```
 
 Debe poder listar proyectos y leer la línea de tiempo. Para pedir la skill explícitamente en Codex CLI puedes escribir `$yt-video-flow`; `AGENTS.md` también permite enrutar pedidos naturales al flujo. [Invocación de skills](https://learn.chatgpt.com/docs/build-skills)
+
+En Claude Code escribe `/yt-video-flow` o `/yt-cut-hi`. Los hooks y la continuidad de episodios existentes están explicados en [Claude Code](claude-code.md).
 
 ## 4. Personalizar el canal
 
@@ -66,10 +70,11 @@ Los ensayos no generan episodios reales ni usan credenciales. Puedes abrir el ca
 
 | Problema | Cómo resolverlo |
 | --- | --- |
-| No aparece la skill | Abre la raíz del clon; revisa que los enlaces `.agents/skills/` resuelvan hacia `skills/`. Inicia una sesión nueva si no se detecta. |
+| No aparece la skill | Abre la raíz del clon; revisa que `.agents/skills/` (Codex) o `.claude/skills/` (Claude) resuelva hacia `skills/`. Reinicia la sesión si no se detecta. |
 | Palmier no responde | Comprueba que esté abierto y que el MCP use la URL local correcta; vuelve a vincular el proyecto de la sesión. |
 | El helper escribe en otra carpeta | Ejecútalo desde este clon o especifica `--root /ruta/workspace` antes del subcomando. No copies solo el script: necesita sus plantillas. |
 | Falta `canal.md` en otro workspace | Copia y adapta la configuración del canal antes de usar el agente allí; `--root` solo dirige el helper, no instala instrucciones en esa carpeta. |
 | Calendario antiguo | Ejecuta `calendar`. Una fecha en YouTube no se conoce hasta que la informes. |
 | Falta un archivo importado | Restablece su ruta persistente. Palmier puede referenciar archivos externos; no borres los crudos después de importar. |
 | JSON o bloque generado inválido | Corrige el dato o el par de marcadores indicado. El helper conserva el calendario anterior si no puede regenerarlo correctamente. |
+| Hook de Claude falla | Revisa Python/Git y `.claude/settings.json`; ejecuta el diagnóstico manual de la guía de Claude. Sus errores no bloquean los prompts de reparación. |

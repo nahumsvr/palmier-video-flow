@@ -4,6 +4,8 @@
 
 Abre el clon como workspace, conecta Palmier y usa estos pedidos:
 
+Los pedidos y el estado son compartidos por Codex y Claude Code. Para Claude, inicia `claude` desde la raíz; puedes usar `/yt-video-flow`, `/yt-cut-hi` y las skills de edición dinámica (`/yt-edit-dinamica` y sus cuatro especializadas). Lee la [guía de hooks y continuidad](claude-code.md) al cambiar de agente.
+
 | Pedido | Resultado |
 | --- | --- |
 | «Crea un proyecto de video» | ID permanente, carpetas, documentos y proyecto Palmier. La idea puede llegar después. |
@@ -11,6 +13,8 @@ Abre el clon como workspace, conecta Palmier y usa estos pedidos:
 | «Ya está el crudo; prepara V0001» | Inspección de archivos/audio, importación y registro del original. |
 | «Haz el montaje base» | Original con cortes sin pérdida y versión `Ideas completas`, mediante `yt-cut-hi`. |
 | «Edita los apoyos y la emoción» | Versión de edición con apoyos, énfasis selectivo y notas actualizadas. |
+| «Haz una versión más dinámica (v2, v3)» | Copia del corte con encuadre completo, capítulos, zooms, subtítulos animados y efectos de sonido, mediante `yt-edit-dinamica`. Nunca toca el corte revisado; el usuario decide cuál queda vigente. |
+| «Añade zooms / subtítulos animados / efectos / capítulos» | Solo esa parte, con su skill: `yt-edit-zooms`, `yt-edit-subtitulos`, `yt-edit-sfx` o `yt-edit-capitulos`. Música, efectos temáticos y máscaras mágicas necesitan material o autorización de gasto. |
 | «Revisa el video» | Comprobaciones estructurales y audiovisuales según lo que pueda revisarse realmente. |
 | «Exporta el video» | Archivo versionado, espera del resultado y comprobación del entregable. |
 | «Lo programé para el día… a las…» | Registro de programación real y actualización del calendario. |
@@ -18,6 +22,8 @@ Abre el clon como workspace, conecta Palmier y usa estos pedidos:
 | «Archiva el proyecto» | Respaldo autocontenido de Palmier comprobado; fuentes conservadas. |
 
 Al retomar un episodio, menciona su ID. Cambiar el título no cambia `V0001` ni sus rutas.
+
+Una sesión nueva debe leer `estado.json` y los documentos del episodio, aunque otro agente haya terminado una etapa. Un archivo local `continuidad.md` puede resumir decisiones y evidencia; no reemplaza el estado. Los hooks de Claude no conocen por sí solos cambios del timeline o hechos de YouTube.
 
 Para incorporar un proyecto antiguo:
 

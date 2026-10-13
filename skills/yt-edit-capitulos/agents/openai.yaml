@@ -1,0 +1,6 @@
+interface:
+  display_name: "Capítulos CoC"
+  short_description: "Tarjetas negras de capítulo con ripple, tipografía y sonido de impacto"
+  default_prompt: "Usa $yt-edit-capitulos para separar el episodio en capítulos con tarjetas negras."
+policy:
+  allow_implicit_invocation: true

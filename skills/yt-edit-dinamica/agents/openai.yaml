@@ -1,0 +1,6 @@
+interface:
+  display_name: "Edición dinámica CoC"
+  short_description: "Coordina zooms, capítulos, subtítulos y efectos en una nueva versión"
+  default_prompt: "Usa $yt-edit-dinamica para hacer más dinámica la edición de mi video de Clash of Clans en una versión nueva."
+policy:
+  allow_implicit_invocation: true

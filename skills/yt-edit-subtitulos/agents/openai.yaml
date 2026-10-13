@@ -1,0 +1,6 @@
+interface:
+  display_name: "Subtítulos animados CoC"
+  short_description: "Captions en Clash con entrada de abajo hacia arriba, rebote y desenfoque"
+  default_prompt: "Usa $yt-edit-subtitulos para crear o ajustar los subtítulos animados del episodio."
+policy:
+  allow_implicit_invocation: true

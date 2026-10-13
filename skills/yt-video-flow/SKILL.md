@@ -6,6 +6,8 @@ description: >-
 
 # yt-video-flow
 
+Las instrucciones funcionan en Codex y Claude Code; `skills/yt-video-flow/` es la única fuente. Usa el nombre lógico y esquema actual de cada herramienta Palmier, con el prefijo MCP que exponga el agente. En Claude Code puedes invocar `/yt-video-flow`; sus hooks refrescan contexto/calendario, pero el registro de resultados y snapshots sigue siendo responsabilidad del agente. Configuración y continuidad: [guía de Claude Code](../../docs/claude-code.md).
+
 Esta skill vive en el workspace de producción. Lee `canal.md` al comenzar una sesión. El helper funciona con Python 3.9+ y biblioteca estándar; organiza documentos y estados, **no edita Palmier ni publica en YouTube**. Tú coordinas las herramientas del editor según el pedido del usuario.
 
 ## Entrada y continuidad
